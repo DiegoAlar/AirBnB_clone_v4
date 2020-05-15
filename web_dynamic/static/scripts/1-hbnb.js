@@ -5,7 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
   
   const exec = function () {
 
-    console.log('entereee');
+    let amenities = []
+    $('input:checkbox').change(
+        function(){
+            if ($(this).is(':checked')) {
+                amenities.push($(this).data('id'));
+            }
+            else {
+                delete amenities($(this).data('id'));
+            }
+            console.log(amenities);
+        });
     // $('#add_item').click(function () {
     //   $('UL.my_list').append('<li>Item</li>');
     // });
