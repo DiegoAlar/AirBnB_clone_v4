@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const exec = function () {
   const amenities = [];
   const amNames = [];
-  const limit = 15;
+  const limit = 40;
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/places_search',
     contentType: 'application/json',
@@ -14,6 +14,7 @@ const exec = function () {
     type: 'POST',
     success: (data) => {
       data.forEach(object => {
+        console.log(object.amenities);
         const stPlaces = [
           '<article>',
           '<div class="title_box">',
