@@ -7,15 +7,13 @@ const exec = function () {
   const amenities = [];
   const amNames = [];
   const limit = 15;
-  console.log('im hereeeeeeeeeeeeeee');
   $.ajax({
-    // url: 'http://localhost:5001/api/v1/places_search/',
     url: 'http://0.0.0.0:5001/api/v1/places_search',
     contentType: 'application/json',
     data: '{}',
     type: 'POST',
     success: function (res) {
-      console.log(res.status);
+      console.log(res);
     }
   });
 
