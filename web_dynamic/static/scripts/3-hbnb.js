@@ -12,38 +12,79 @@ const exec = function () {
     contentType: 'application/json',
     data: '{}',
     type: 'POST',
-    success: function (data) {
-      console.log(data);
-      for (object in data) {
-        const place = data[object];
+    // success: function (data) {
+    //   console.log(data);
+    //   for (object in data) {
+    //     const place = data[object];
+    //     const stPlaces = [
+    //       '<article>',
+    //       '<div class="title_box">',
+    //       '<h2>',
+    //       place.name,
+    //       '</h2>',
+    //       '<div class="price_by_night">',
+    //       place.price_by_night,
+    //       '</div>',
+    //       '</div>',
+    //       '<div class="information">',
+    //       '<div class="max_guest">',
+    //       place.max_guest,
+    //       '</div>',
+    //       '<div class="number_rooms">',
+    //       place.number_rooms,
+    //       '</div>',
+    //       '<div class="number_bathrooms">',
+    //       place.number_bathrooms,
+    //       '</div>',
+    //       '</div>',
+    //       '<div class="user">',
+    //       '<b>Owner: </b>',
+    //       '</div>',
+    //       '<div class="description">',
+    //       place.description,
+    //       '</div>',
+    //       '</article>'
+    //     ];
+    //     $(stPlaces.join('')).appendTo($('.places'));
+    //   }
+    // }
+    // prueba
+    success: (data) => {
+      data.forEach(object => {
+        // const place = data[object];
         const stPlaces = [
           '<article>',
-          '<div class="title">',
+          '<div class="title_box">',
           '<h2>',
-          place.name,
+          object.name,
           '</h2>',
           '<div class="price_by_night">',
-          place.price_by_night,
+          object.price_by_night,
           '</div>',
           '</div>',
           '<div class="information">',
           '<div class="max_guest">',
-          place.max_guest,
+          object.max_guest,
           '</div>',
           '<div class="number_rooms">',
-          place.number_rooms,
+          object.number_rooms,
           '</div>',
           '<div class="number_bathrooms">',
-          place.number_bathrooms,
+          object.number_bathrooms,
           '</div>',
-          '<div class="dscription">',
-          place.descriotion,
           '</div>',
-          '<article>'
+          '<div class="user">',
+          '<b>Owner: </b>',
+          '</div>',
+          '<div class="description">',
+          object.description,
+          '</div>',
+          '</article>'
         ];
-        $(stPlaces.join('')).appendTo($('.places'))
-      }
+        $(stPlaces.join('')).appendTo($('.places'));
+      });
     }
+    // prueba
   });
 
   function truncateString (str, limit) {
