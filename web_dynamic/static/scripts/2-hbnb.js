@@ -7,6 +7,16 @@ const exec = function () {
   const amenities = [];
   const amNames = [];
   const limit = 15;
+  $.ajax({
+    url: 'http://0.0.0.0:5001/api/v1/status/',
+    type: 'GET',
+    dataType: 'json', // added data type
+    success: function (res) {
+      if (res.status === 'OK') {
+        $('header #api_status').addClass('available');
+      }
+    }
+  });
 
   function truncateString (str, limit) {
     return str.length > limit ? str.substring(limit, -3) + '...' : str;
