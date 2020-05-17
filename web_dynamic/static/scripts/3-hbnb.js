@@ -12,46 +12,8 @@ const exec = function () {
     contentType: 'application/json',
     data: '{}',
     type: 'POST',
-    // success: function (data) {
-    //   console.log(data);
-    //   for (object in data) {
-    //     const place = data[object];
-    //     const stPlaces = [
-    //       '<article>',
-    //       '<div class="title_box">',
-    //       '<h2>',
-    //       place.name,
-    //       '</h2>',
-    //       '<div class="price_by_night">',
-    //       place.price_by_night,
-    //       '</div>',
-    //       '</div>',
-    //       '<div class="information">',
-    //       '<div class="max_guest">',
-    //       place.max_guest,
-    //       '</div>',
-    //       '<div class="number_rooms">',
-    //       place.number_rooms,
-    //       '</div>',
-    //       '<div class="number_bathrooms">',
-    //       place.number_bathrooms,
-    //       '</div>',
-    //       '</div>',
-    //       '<div class="user">',
-    //       '<b>Owner: </b>',
-    //       '</div>',
-    //       '<div class="description">',
-    //       place.description,
-    //       '</div>',
-    //       '</article>'
-    //     ];
-    //     $(stPlaces.join('')).appendTo($('.places'));
-    //   }
-    // }
-    // prueba
     success: (data) => {
       data.forEach(object => {
-        // const place = data[object];
         const stPlaces = [
           '<article>',
           '<div class="title_box">',
@@ -84,7 +46,6 @@ const exec = function () {
         $(stPlaces.join('')).appendTo($('.places'));
       });
     }
-    // prueba
   });
 
   function truncateString (str, limit) {
