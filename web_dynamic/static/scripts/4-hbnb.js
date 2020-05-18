@@ -18,36 +18,39 @@ const exec = function () {
     }
   });
 
-  function allHtml (object) {
-    return (
-            '<article>',
-            '<div class="title_box">',
-            '<h2>',
-            object.name,
-            '</h2>',
-            '<div class="price_by_night">',
-            '$' + object.price_by_night,
-            '</div>',
-            '</div>',
-            '<div class="information">',
-            '<div class="max_guest">',
-            object.max_guest + ' Guest' + validatePlural(object.max_guest),
-            '</div>',
-            '<div class="number_rooms">',
-            object.number_rooms + ' Bedroom' + validatePlural(object.number_rooms),
-            '</div>',
-            '<div class="number_bathrooms">',
-            object.number_bathrooms + ' Bathroom' + validatePlural(object.number_bathrooms),
-            '</div>',
-            '</div>',
-            '<div class="user">',
-            '<b>Owner: </b>',
-            '</div>',
-            '<div class="description">',
-            object.description,
-            '</div>',
-            '</article>'
-    );
+  function allHtml (data) {
+    data.forEach(object => {
+      const stPlaces = [
+        '<article>',
+        '<div class="title_box">',
+        '<h2>',
+        object.name,
+        '</h2>',
+        '<div class="price_by_night">',
+        '$' + object.price_by_night,
+        '</div>',
+        '</div>',
+        '<div class="information">',
+        '<div class="max_guest">',
+        object.max_guest + ' Guest' + validatePlural(object.max_guest),
+        '</div>',
+        '<div class="number_rooms">',
+        object.number_rooms + ' Bedroom' + validatePlural(object.number_rooms),
+        '</div>',
+        '<div class="number_bathrooms">',
+        object.number_bathrooms + ' Bathroom' + validatePlural(object.number_bathrooms),
+        '</div>',
+        '</div>',
+        '<div class="user">',
+        '<b>Owner: </b>',
+        '</div>',
+        '<div class="description">',
+        object.description,
+        '</div>',
+        '</article>'
+      ];
+      $(stPlaces.join('')).appendTo($('.places'));
+    });
   }
 
 
@@ -57,11 +60,8 @@ const exec = function () {
     data: '{}',
     type: 'POST',
     success: (data) => {
-      data.forEach(object => {
         console.log(object.amenities);
-        const stPlaces = allHtml(object);
-        $(stPlaces.join('')).appendTo($('.places'));
-      });
+        allHtml(data);
     }
   });
 
@@ -74,10 +74,7 @@ const exec = function () {
       type: 'POST',
       success: (data) => {
       	$(".places").empty();
-        data.forEach(object => {
-          const stPlaces = allHtml(object);
-          $(stPlaces.join('')).appendTo($('.places'));
-        });
+        allHtml(data);
       }
     });
   });
