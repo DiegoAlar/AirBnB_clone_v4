@@ -60,7 +60,7 @@ const exec = function () {
     data: '{}',
     type: 'POST',
     success: (data) => {
-        console.log(object.amenities);
+        console.log(data);
         allHtml(data);
     }
   });
