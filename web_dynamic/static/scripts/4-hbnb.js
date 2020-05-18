@@ -65,11 +65,11 @@ const exec = function () {
     $.ajax({
       url: 'http://0.0.0.0:5001/api/v1/places_search',
       contentType: 'application/json',
-      data: {'amenities': amenities},
+      data: JSON.stringify({'amenities': amenities}),
       type: 'POST',
       success: (data) => {
+      	$(".places").empty();
         data.forEach(object => {
-          console.log(object.amenities);
           const stPlaces = [
             '<article>',
             '<div class="title_box">',
