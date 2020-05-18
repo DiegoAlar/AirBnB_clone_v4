@@ -6,7 +6,18 @@ document.addEventListener('DOMContentLoaded', function () {
 const exec = function () {
   const amenities = [];
   const amNames = [];
-  const limit = 40;
+  const limit = 50;
+  $.ajax({
+    url: 'http://0.0.0.0:5001/api/v1/status/',
+    type: 'GET',
+    dataType: 'json', // added data type
+    success: function (res) {
+      if (res.status === 'OK') {
+        $('header #api_status').addClass('available');
+      }
+    }
+  });
+
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/places_search',
     contentType: 'application/json',
@@ -48,6 +59,52 @@ const exec = function () {
       });
     }
   });
+
+
+  $('button').click(function () {
+    $.ajax({
+      url: 'http://0.0.0.0:5001/api/v1/places_search',
+      contentType: 'application/json',
+      data: {'amenities': amenities},
+      type: 'POST',
+      success: (data) => {
+        data.forEach(object => {
+          console.log(object.amenities);
+          const stPlaces = [
+            '<article>',
+            '<div class="title_box">',
+            '<h2>',
+            object.name,
+            '</h2>',
+            '<div class="price_by_night">',
+            '$' + object.price_by_night,
+            '</div>',
+            '</div>',
+            '<div class="information">',
+            '<div class="max_guest">',
+            object.max_guest + ' Guest' + validatePlural(object.max_guest),
+            '</div>',
+            '<div class="number_rooms">',
+            object.number_rooms + ' Bedroom' + validatePlural(object.number_rooms),
+            '</div>',
+            '<div class="number_bathrooms">',
+            object.number_bathrooms + ' Bathroom' + validatePlural(object.number_bathrooms),
+            '</div>',
+            '</div>',
+            '<div class="user">',
+            '<b>Owner: </b>',
+            '</div>',
+            '<div class="description">',
+            object.description,
+            '</div>',
+            '</article>'
+          ];
+          $(stPlaces.join('')).appendTo($('.places'));
+        });
+      }
+    });
+  });
+
 
   function truncateString (str, limit) {
     return str.length > limit ? str.substring(limit, -3) + '...' : str;
