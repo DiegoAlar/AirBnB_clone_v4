@@ -60,7 +60,6 @@ const exec = function () {
     data: '{}',
     type: 'POST',
     success: (data) => {
-        console.log(data);
         allHtml(data);
     }
   });
